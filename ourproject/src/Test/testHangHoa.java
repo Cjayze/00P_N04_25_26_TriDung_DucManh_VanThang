@@ -1,16 +1,17 @@
 public class testHangHoa {
 
+    public static void main(String[] args) {
+        // gọi test() trong main để chạy được
+        test();
+    }
 
-    public static void test(){
-
+    public static void test() {
         HangHoa testHH = new HangHoa();
 
-        testHH.tenHangHoa ="Dienthoai iphone";
+        testHH.tenHangHoa = "Dienthoai iphone";
         testHH.maHangHoa = "ma01";
-        //in ten hang hoa voi ma tuong ung
-        System.out.println(testHH.layTenHangHoa("ma01"));
-        
 
+        // in tên hàng hóa với mã tương ứng
+        System.out.println(testHH.layTenHangHoa("ma01"));`
     }
-    
 }

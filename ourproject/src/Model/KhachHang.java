@@ -8,3 +8,4 @@ public class KhachHang {
         return "Ten: " + ten + ", So Dien Thoai: " + soDienThoai + ", Email: " + email;
     }
 }
+
