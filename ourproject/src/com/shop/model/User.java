@@ -1,4 +1,4 @@
-
+package com.shop.model;
 
 public class User {
     protected int userId;
@@ -11,11 +11,6 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
-    }
-
-    public boolean register() {
-        System.out.println("User registered: " + name);
-        return true;
     }
 
     public boolean login(String email, String password) {

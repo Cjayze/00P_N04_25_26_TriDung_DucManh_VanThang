@@ -17,10 +17,6 @@ public class Product {
         this.image = image;
     }
 
-    public void addProduct() { System.out.println("Added product: " + name); }
-    public void updateProduct() { System.out.println("Updated product: " + name); }
-    public void deleteProduct() { System.out.println("Deleted product: " + name); }
-
     public String getName() { return name; }
     public double getPrice() { return price; }
 }

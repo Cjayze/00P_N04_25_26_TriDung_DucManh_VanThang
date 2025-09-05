@@ -11,9 +11,5 @@ public class Category {
         this.description = description;
     }
 
-    public void addCategory() { System.out.println("Category added: " + name); }
-    public void updateCategory() { System.out.println("Category updated: " + name); }
-    public void deleteCategory() { System.out.println("Category deleted: " + name); }
-
     public String getName() { return name; }
 }

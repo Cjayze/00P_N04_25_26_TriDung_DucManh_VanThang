@@ -1,10 +1,9 @@
 package com.shop.model;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
-    private int cartId;
-    private String createdAt;
     private List<CartItem> items = new ArrayList<>();
 
     public void addItem(Product product, int quantity) {
@@ -18,6 +17,8 @@ public class Cart {
     public double getTotal() {
         return items.stream().mapToDouble(CartItem::getSubtotal).sum();
     }
+
+    public List<CartItem> getItems() { return items; }
 
     public void clear() { items.clear(); }
 }
