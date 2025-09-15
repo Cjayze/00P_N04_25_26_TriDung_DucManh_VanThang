@@ -1,5 +1,5 @@
-package Test;
-import src.Time;
+//package Test;
+//import src.Time;
 
 public class TestTime {
     public static void run() {

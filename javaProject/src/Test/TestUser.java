@@ -1,5 +1,6 @@
-package Test;
-import src.User;
+
+
+
 
 public class TestUser {
     public static void run() {
