@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "java.project.sourcePaths": [
         "src",
@@ -8,3 +9,15 @@
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": []
 }
+=======
+{
+    "java.project.sourcePaths": [
+        "src",
+        "src/Test",
+        "src/controllers",
+         "src/models"
+    ],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": []
+}
+>>>>>>> 71e1370a75f1dd42d2ccb6eae9aa9ca67a1453e7
