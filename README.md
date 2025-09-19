@@ -67,7 +67,7 @@ classDiagram
       - int id
       - int customer_id
       - Date order_date
-      - double total_amount
+      - double total_amountgit status
       - String status
       + create()
       + read()
