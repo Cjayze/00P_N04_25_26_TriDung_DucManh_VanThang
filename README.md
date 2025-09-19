@@ -35,5 +35,50 @@ o	Quản lý đơn hàng, hóa đơn.
 o	Thống kê doanh thu.
 o	Phân quyền tài khoản: admin, nhân viên, khách hàng.
 
+classDiagram
+    class Customer {
+      - int id
+      - String name
+      - String email
+      - String phone
+      - String address
+      - String password
+      + create()
+      + read()
+      + update()
+      + delete()
+    }
+
+    class Product {
+      - int id
+      - String name
+      - String description
+      - double price
+      - int quantity
+      - int category_id
+      + create()
+      + read()
+      + update()
+      + delete()
+    }
+
+    class Order {
+      - int id
+      - int customer_id
+      - Date order_date
+      - double total_amountgit status
+      - String status
+      + create()
+      + read()
+      + update()
+      + delete()
+    }
+
+    Customer "1" --> "*" Order
+    Order "*" --> "*" Product
+
+
+
+
 
 
