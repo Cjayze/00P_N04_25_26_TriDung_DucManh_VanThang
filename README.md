@@ -35,6 +35,7 @@ o	Quản lý đơn hàng, hóa đơn.
 o	Thống kê doanh thu.
 o	Phân quyền tài khoản: admin, nhân viên, khách hàng.
 
+
 classDiagram
     class Customer {
       - int id
@@ -49,7 +50,7 @@ classDiagram
       + delete()
     }
 
-   class Product {
+    class Product {
       - int id
       - String name
       - String description
@@ -74,6 +75,8 @@ classDiagram
       + delete()
     }
 
+    Customer "1" --> "*" Order
+    Order "*" --> "*" Product
 
 
 
