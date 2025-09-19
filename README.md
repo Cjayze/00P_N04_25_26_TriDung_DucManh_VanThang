@@ -49,7 +49,7 @@ classDiagram
       + delete()
     }
 
-    class Product {
+   class Product {
       - int id
       - String name
       - String description
@@ -66,17 +66,13 @@ classDiagram
       - int id
       - int customer_id
       - Date order_date
-      - double total_amountgit status
+      - double total_amount
       - String status
       + create()
       + read()
       + update()
       + delete()
     }
-
-    Customer "1" --> "*" Order
-    Order "*" --> "*" Product
-
 
 
 
