@@ -35,10 +35,7 @@ o	Quản lý đơn hàng, hóa đơn.
 o	Thống kê doanh thu.
 o	Phân quyền tài khoản: admin, nhân viên, khách hàng.
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 71e1370a75f1dd42d2ccb6eae9aa9ca67a1453e7
 classDiagram
     class Customer {
       - int id
@@ -53,11 +50,9 @@ classDiagram
       + delete()
     }
 
-<<<<<<< HEAD
-    class Product {
-=======
+
    class Product {
->>>>>>> 71e1370a75f1dd42d2ccb6eae9aa9ca67a1453e7
+
       - int id
       - String name
       - String description
@@ -74,11 +69,11 @@ classDiagram
       - int id
       - int customer_id
       - Date order_date
-<<<<<<< HEAD
+
       - double total_amountgit status
-=======
+
       - double total_amount
->>>>>>> 71e1370a75f1dd42d2ccb6eae9aa9ca67a1453e7
+
       - String status
       + create()
       + read()
@@ -86,11 +81,10 @@ classDiagram
       + delete()
     }
 
-<<<<<<< HEAD
+
     Customer "1" --> "*" Order
     Order "*" --> "*" Product
-=======
->>>>>>> 71e1370a75f1dd42d2ccb6eae9aa9ca67a1453e7
+
 
 
 
