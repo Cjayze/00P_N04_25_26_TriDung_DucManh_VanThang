@@ -2,25 +2,25 @@
 
 
 
-#-Các chức năng chính
+-Các chức năng chính
 
-#-Xác thực người dùng
+-Xác thực người dùng
 
-#-Đăng ký tài khoản mới
+-Đăng ký tài khoản mới
 
-#-Đăng nhập hệ thống với phân quyền
+-Đăng nhập hệ thống với phân quyền
 
-#-Quản lý người dùng Thêm / sửa / xóa người dùng
+-Quản lý người dùng Thêm / sửa / xóa người dùng
 
-#-Phân quyền người dùng 
+-Phân quyền người dùng 
 
-#-Quản lý nhân viên Thêm / sửa / xóa nhân viên 
+-Quản lý nhân viên Thêm / sửa / xóa nhân viên 
 
-#-Quản lý sản phẩm Thêm / sửa / xóa sản phẩm
+-Quản lý sản phẩm Thêm / sửa / xóa sản phẩm
 
-#-Quản lý loại sản phẩm Thêm / sửa / xóa loại sản phẩm 
+-Quản lý loại sản phẩm Thêm / sửa / xóa loại sản phẩm 
 
-#-Quản lý quyền sử dụng Thêm / sửa / xóa quyền sử dụng
+-Quản lý quyền sử dụng Thêm / sửa / xóa quyền sử dụng
 classDiagram
 
 
