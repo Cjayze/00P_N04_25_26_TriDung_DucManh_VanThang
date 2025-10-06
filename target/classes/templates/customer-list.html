@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"/><title>Customers</title></head>
+<body>
+<a th:href="@{/}">Home</a>
+<h2>Customers</h2>
+<form th:action="@{/customers}" th:object="${customerForm}" method="post">
+  Name: <input type="text" th:field="*{name}" required/>
+  Email: <input type="email" th:field="*{email}" required/>
+  <button type="submit">Add</button>
+</form>
+<table border="1">
+<tr><th>ID</th><th>Name</th><th>Email</th><th>Actions</th></tr>
+<tr th:each="c : ${customers}">
+  <td th:text="${c.id}">1</td>
+  <td th:text="${c.name}">Name</td>
+  <td th:text="${c.email}">email</td>
+  <td>
+    <form th:action="@{/customers/update}" method="post" style="display:inline">
+      <input type="hidden" name="id" th:value="${c.id}"/>
+      <input type="text" name="name" th:value="${c.name}"/>
+      <input type="email" name="email" th:value="${c.email}"/>
+      <button type="submit">Update</button>
+    </form>
+    <form th:action="@{/customers/delete}" method="post" style="display:inline">
+      <input type="hidden" name="id" th:value="${c.id}"/>
+      <button type="submit" onclick="return confirm('Delete?')">Delete</button>
+    </form>
+  </td>
+</tr>
+</table>
+</body>
+</html>

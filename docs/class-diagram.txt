@@ -1,0 +1,1 @@
+Class diagram included in README (Mermaid).
