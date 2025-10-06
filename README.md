@@ -2,13 +2,13 @@ NHÓM 6
 
 ỨNG DỤNG QUẢN LÝ CỬA HÀNG DŨNG - MẠNH - THẮNG
 
-<<<<<<< HEAD
+
 *** Đây là một ứng dụng quản lý bán hàng được xây dựng bằng ngôn ngữ lập trình Java sử dụng thư viện Java Swing để thiết kế giao diện người dùng và sử dụng cơ sở dữ liệu SQL SERVER.
-=======
+
 ***  Đây là một ứng dụng quản lý bán hàng được xây dựng bằng ngôn ngữ lập trình Java sử dụng thư viện Java Swing để thiết kế giao diện người dùng và sử dụng cơ sở dữ liệu SQL SERVER.
 
 
->>>>>>> 7fe8675f79cd0769a093ac0274a4223009628a52
+
 
 **Các chức năng chính
 
@@ -66,7 +66,7 @@ create()
 read()
 update()
 delete() }
-=======
+
 -Phân quyền người dùng 
 
 -Quản lý nhân viên Thêm / sửa / xóa nhân viên 
@@ -117,6 +117,4 @@ class Order {
 + delete()
 }
 
-Customer "1" --> "*" Order
-Order "*" --> "*" Product
->>>>>>> 7fe8675f79cd0769a093ac0274a4223009628a52
+
