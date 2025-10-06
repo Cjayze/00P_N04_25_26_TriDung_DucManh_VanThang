@@ -1,83 +1,61 @@
-# OOP_N04_25_26_TriDung_DucManh_VanThang
+NHÓM 6
 
-Demo Spring Boot project (ArrayList storage) for Product, Customer, Order, User.
-Includes REST API and Thymeleaf UI.
+ỨNG DỤNG QUẢN LÝ CỬA HÀNG DŨNG - MẠNH - THẮNG
 
-## Run
-- Open in IDE and run `DemoApplication.java` or: `mvn spring-boot:run`
-- Web UI: http://localhost:8080/
-- APIs: /api/products, /api/customers, /api/orders, /api/users
+*** Đây là một ứng dụng quản lý bán hàng được xây dựng bằng ngôn ngữ lập trình Java sử dụng thư viện Java Swing để thiết kế giao diện người dùng và sử dụng cơ sở dữ liệu SQL SERVER.
 
-## Class Diagram (Mermaid)
-```mermaid
-classDiagram
-    class Product {
-      +int id
-      +String name
-      +double price
-    }
-    class Customer {
-      +int id
-      +String name
-      +String email
-    }
-    class Order {
-      +int id
-      +int customerId
-      +int productId
-      +int quantity
-    }
-    class User {
-      +String name
-      +String email
-    }
-    Customer "1" --> "*" Order
-    Product "1" --> "*" Order
-```
-## Activity diagrams (Mermaid)
+**Các chức năng chính
 
-### Create
-```mermaid
-flowchart TD
- A[Start] --> B[Input data]
- B --> C[Validate]
- C -->|Valid| D[Add to ArrayList]
- C -->|Invalid| E[Show error]
- D --> F[End]
- E --> B
-```
+-Xác thực người dùng
 
-### Read
-```mermaid
-flowchart TD
- A[Start] --> B[Request list or item]
- B --> C[Return data from ArrayList]
- C --> D[End]
-```
+-Đăng ký tài khoản mới
 
-### Update
-```mermaid
-flowchart TD
- A[Start] --> B[Select ID]
- B --> C[Input new data]
- C --> D[Validate]
- D -->|Valid| E[Replace item in ArrayList]
- D -->|Invalid| F[Show error]
- E --> G[End]
- F --> B
-```
+-Đăng nhập hệ thống với phân quyền
 
-### Delete
-```mermaid
-flowchart TD
- A[Start] --> B[Select ID]
- B --> C[Confirm]
- C -->|Yes| D[Remove from ArrayList]
- C -->|No| E[Abort]
- D --> F[End]
- E --> F
-```
+-Quản lý người dùng Thêm / sửa / xóa người dùng
 
-## Notes
-- Data is stored in-memory. Restarting the app resets data.
-- You can extend DAOs to use JPA/H2 or MySQL later.
+-Phân quyền người dùng
+
+-Quản lý nhân viên Thêm / sửa / xóa nhân viên
+
+-Quản lý sản phẩm Thêm / sửa / xóa sản phẩm
+
+-Quản lý loại sản phẩm Thêm / sửa / xóa loại sản phẩm
+
+-Quản lý quyền sử dụng Thêm / sửa / xóa quyền sử dụng classDiagram
+
+class Customer {
+
+int id
+String name
+String email
+String phone
+String address
+String password
+create()
+read()
+update()
+delete() }
+class Product {
+
+int id
+String name
+String description
+double price
+int quantity
+int category_id
+create()
+read()
+update()
+delete() }
+class Order {
+
+int id
+int customer_id
+Date order_date
+double total_amount
+String status
+create()
+read()
+update()
+delete() }
