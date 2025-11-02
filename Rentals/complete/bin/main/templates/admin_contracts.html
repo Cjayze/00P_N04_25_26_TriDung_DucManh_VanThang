@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Quản lý sản phẩm</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <link rel="icon" href="./img/logo.png" type="image/x-icon" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <style>
+    * {
+      transition: all 0.3s ease;
+    }
+
+    body {
+      background: #f4f6fa;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    /* Thanh menu ngang */
+    .navbar-custom {
+      background: linear-gradient(to right, #08965a, #8a2be2);
+      color: white;
+    }
+
+    .navbar-custom .nav-link {
+      color: white !important;
+      font-weight: 500;
+      margin-right: 12px;
+    }
+
+    .navbar-custom .nav-link:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+    }
+
+    .logo {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+      background: white;
+      border-radius: 50%;
+      padding: 6px;
+      margin-right: 10px;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 8px;
+    }
+
+    .logout-link {
+      color: #ffcccc !important;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .logout-link:hover {
+      text-decoration: underline;
+    }
+
+    .table {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.03);
+    }
+
+    .table th {
+      background: #212529;
+      color: white;
+      font-weight: 600;
+    }
+
+    .table tbody tr:hover {
+      background: #eaf6ff;
+      cursor: pointer;
+    }
+
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Thanh menu ngang -->
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center text-white" href="/admin">
+        <img src="/img/logo.png" alt="Logo" class="logo" />
+        <strong>Admin</strong>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="/admin">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="/users">Quản lý người dùng</a></li>
+          <li class="nav-item"><a class="nav-link" href="/landlords">Quản lý chủ cửa hàng</a></li>
+          <li class="nav-item"><a class="nav-link" href="/tenants">Quản lý cộng tác viên</a></li>
+          <li class="nav-item"><a class="nav-link" href="/rooms/all">Quản lý sản phẩm</a></li>
+          <li class="nav-item"><a class="nav-link" href="/rooms/due">Sản phẩm tồn kho</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contracts">Hợp đồng mua bán</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin/feedbacks">Phản hồi</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin/invoices">Hóa đơn</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin/notifications">Thông báo</a></li>
+          <li class="nav-item d-flex align-items-center ms-3">
+            <img src="/img/avatar.jpg" alt="Avatar" class="avatar" />
+            <span class="text-white me-2">Admin</span>
+            <a href="/logout" class="logout-link"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Nội dung chính -->
+  <div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="mb-0">📄 Danh sách hợp đồng thuê</h3>
+      <a href="/contracts/new" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm hợp đồng</a>
+    </div>
+
+    <table class="table table-hover table-bordered shadow-sm text-center bg-white" data-aos="fade-up">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Sản phẩm</th>
+          <th>Cộng tác viên</th>
+          <th>Chủ cửa hàng</th>
+          <th>Tiền cọc</th>
+          <th>Ngày ký</th>
+          <th>Đến hạn</th>
+          <th>Trạng thái</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="contract : ${contracts}">
+          <td th:text="${contract.id}">1</td>
+          <td th:text="${contract.room.roomNumber}"></td>
+          <td th:text="${contract.tenant.name}"></td>
+          <td th:text="${contract.landlord.name}"></td>
+          <td th:text="${#numbers.formatDecimal(contract.depositAmount, 0, 'POINT', 0, 'COMMA')} + 'đ'">5.0000</td>
+          <td th:text="${#temporals.format(contract.contractDate, 'dd/MM/yyyy')}">25/06/2025</td>
+          <td th:text="${#temporals.format(contract.dueDate, 'dd/MM/yyyy')}">25/06/2026</td>
+          <td th:text="${contract.contractStatus}">active</td>
+          <td>
+            <a th:href="@{/contracts/edit/{id}(id=${contract.id})}" class="btn btn-warning btn-sm">
+              <i class="fas fa-edit"></i> Sửa
+            </a>
+            <a th:href="@{/contracts/delete/{id}(id=${contract.id})}" class="btn btn-danger btn-sm"
+              onclick="return confirm('Bạn có chắc muốn xóa hợp đồng này?')">
+              <i class="fas fa-trash-alt"></i> Xóa
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init({ duration: 800, easing: 'ease-in-out', once: true });</script>
+</body>
+
+</html>

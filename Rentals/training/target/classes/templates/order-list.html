@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"/><title>Orders</title></head>
+<body>
+<a th:href="@{/}">Home</a>
+<h2>Orders</h2>
+<form th:action="@{/orders}" th:object="${orderForm}" method="post">
+  Customer:
+  <select name="customerId">
+    <option th:each="c : ${customers}" th:value="${c.id}" th:text="${c.name}"></option>
+  </select>
+  Product:
+  <select name="productId">
+    <option th:each="p : ${products}" th:value="${p.id}" th:text="${p.name}"></option>
+  </select>
+  Quantity: <input type="number" name="quantity" value="1" min="1"/>
+  <button type="submit">Place order</button>
+</form>
+<table border="1">
+<tr><th>ID</th><th>Customer</th><th>Product</th><th>Qty</th><th>Actions</th></tr>
+<tr th:each="o : ${orders}">
+  <td th:text="${o.id}"></td>
+  <td th:text="${#lists.findFirst(customers, c -> c.id == o.customerId)?.name}"></td>
+  <td th:text="${#lists.findFirst(products, p -> p.id == o.productId)?.name}"></td>
+  <td th:text="${o.quantity}"></td>
+  <td>
+    <form th:action="@{/orders/delete}" method="post" style="display:inline">
+      <input type="hidden" name="id" th:value="${o.id}"/>
+      <button type="submit" onclick="return confirm('Delete?')">Delete</button>
+    </form>
+  </td>
+</tr>
+</table>
+</body>
+</html>

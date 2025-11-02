@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Chi tiết sản phẩm</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: #f8fafc;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    /* ===== NAVBAR MỚI (gradient tím-xanh) ===== */
+    .navbar-custom {
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .navbar-brand img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #fff;
+      padding: 5px;
+      margin-right: 8px;
+    }
+
+    .navbar-custom .nav-link {
+      color: #e0e7ff !important;
+      font-weight: 500;
+      margin-right: 12px;
+      transition: 0.3s;
+    }
+
+    .navbar-custom .nav-link:hover {
+      color: #ffeb3b !important;
+      text-decoration: underline;
+      transform: translateY(-2px);
+    }
+
+    /* ===== CARD & NỘI DUNG ===== */
+    .card {
+      border: none;
+      border-radius: 14px;
+    }
+
+    .card-header {
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      color: white;
+      border-top-left-radius: 14px;
+      border-top-right-radius: 14px;
+    }
+
+    .img-preview {
+      max-width: 80%;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .img-preview:hover {
+      transform: scale(1.03);
+    }
+
+    .section-title {
+      font-weight: bold;
+      font-size: 1.15rem;
+      color: #6a11cb;
+      border-left: 4px solid #6a11cb;
+      padding-left: 8px;
+      margin-top: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .info-block {
+      margin-bottom: 0.75rem;
+    }
+
+    .badge {
+      font-size: 0.9rem;
+    }
+
+    .btn-secondary {
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      border: none;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: linear-gradient(90deg, #2575fc, #6a11cb);
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="/admin">
+        <img src="/img/logo.png" alt="Logo">
+        <span class="fw-bold text-white">Admin</span>
+      </a>
+
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="/admin"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="/users"><i class="fas fa-user-shield"></i> Người dùng</a></li>
+          <li class="nav-item"><a class="nav-link" href="/landlords"><i class="fas fa-user-tie"></i> Chủ cửa hàng</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="/tenants"><i class="fas fa-user"></i> Cộng tác viên</a></li>
+          <li class="nav-item"><a class="nav-link" href="/rooms/all"><i class="fas fa-box"></i> Sản phẩm</a></li>
+          <li class="nav-item"><a class="nav-link" href="/rooms/due"><i class="fas fa-warehouse"></i> Tồn kho</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contracts"><i class="fas fa-file-signature"></i> Hợp đồng</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="/admin/feedbacks"><i class="fas fa-comment-dots"></i> Phản
+              hồi</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin/invoices"><i class="fas fa-file-invoice"></i> Hóa
+              đơn</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin/notifications"><i class="fas fa-bell"></i> Thông báo</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="container py-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h4><i class="fas fa-info-circle"></i> Chi tiết sản phẩm</h4>
+      </div>
+
+      <div class="card-body">
+        <h3 th:text="${room.title}" class="text-primary mb-4"></h3>
+
+        <div class="text-center">
+          <img th:if="${room.imageUrl != null and !room.imageUrl.isEmpty()}" th:src="@{${room.imageUrl}}"
+            class="img-preview" alt="Ảnh sản phẩm">
+          <img th:if="${room.imageUrl == null or room.imageUrl.isEmpty()}" th:src="@{templates/img/iphone.webp}"
+            class="img-preview" alt="Ảnh mặc định">
+        </div>
+
+        <div class="mt-4">
+          <div class="info-block"><strong>Tên sản phẩm:</strong> <span th:text="${room.roomNumber}"></span></div>
+          <div class="info-block"><strong>Giá:</strong>
+            <span th:text="${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')} + ' đ/sp'"></span>
+          </div>
+          <div class="info-block"><strong>Trạng thái:</strong>
+            <span th:switch="${room.status.name().toLowerCase()}">
+              <span th:case="'available'" class="badge bg-success">Mới</span>
+              <span th:case="'occupied'" class="badge bg-warning text-dark">Đã qua sử dụng</span>
+              <span th:case="'maintenance'" class="badge bg-danger">Cũ</span>
+              <span th:case="*">Không xác định</span>
+            </span>
+          </div>
+          <div class="info-block"><strong>Ngày mua:</strong>
+            <span
+              th:text="${room.rentedFrom != null ? #temporals.format(room.rentedFrom, 'dd/MM/yyyy') : '---'}"></span>
+          </div>
+          <div class="info-block"><strong>Hạn thanh toán:</strong>
+            <span
+              th:text="${room.dueDate != null ? #temporals.format(room.dueDate, 'dd/MM/yyyy HH:mm') : '---'}"></span>
+          </div>
+        </div>
+
+        <div class="section-title">Trạng thái sản phẩm</div>
+        <ul th:if="${devices != null and !devices.isEmpty()}">
+          <li th:each="device : ${devices}">
+            <i class="fa fa-plug"></i> <span th:text="${device.name}"></span> -
+            <span th:switch="${device.condition}">
+              <span th:case="'good'" class="text-success">Mới</span>
+              <span th:case="'maintenance'" class="text-warning">Đã qua sử dụng</span>
+              <span th:case="'broken'" class="text-danger">Cũ</span>
+            </span>
+          </li>
+        </ul>
+        <p th:if="${devices == null or devices.isEmpty()}">Chưa có trạng thái cho sản phẩm này.</p>
+
+        <hr>
+
+        <div class="section-title">Giới thiệu sản phẩm</div>
+        <p>
+          - Sản phẩm chính hãng, nhập khẩu từ nhà cung cấp uy tín.<br>
+          - Chất lượng cao, thiết kế hiện đại.<br>
+          - Bảo hành chính hãng, đổi trả dễ dàng.<br>
+          - Giao hàng tận nơi, thanh toán linh hoạt.
+        </p>
+
+        <div class="section-title">Đối tượng khách hàng</div>
+        <p>
+          <i class="fa fa-user"></i> Cá nhân &nbsp;
+          <i class="fa fa-users"></i> Gia đình &nbsp;
+          <i class="fa fa-building"></i> Doanh nghiệp
+        </p>
+
+        <div class="section-title">Tính năng nổi bật</div>
+        <p>
+          <i class="fa fa-check-circle"></i> Thiết kế hiện đại &nbsp;
+          <i class="fa fa-cogs"></i> Hoạt động ổn định &nbsp;
+          <i class="fa fa-shield-alt"></i> Độ bền cao
+        </p>
+
+        <div class="section-title">Tiện ích mua sắm</div>
+        <p>
+          <i class="fa fa-credit-card"></i> Thanh toán online &nbsp;
+          <i class="fa fa-shipping-fast"></i> Giao hàng nhanh &nbsp;
+          <i class="fa fa-gift"></i> Ưu đãi hấp dẫn
+        </p>
+
+        <div class="section-title">Cửa hàng gần bạn</div>
+        <p>
+          Hà Nội: 2.5km &nbsp; | &nbsp;
+          TP.HCM: 5.2km &nbsp; | &nbsp;
+          Đà Nẵng: 1.8km
+        </p>
+
+        <a href="/rooms/all" class="btn btn-secondary mt-3"><i class="fas fa-arrow-left"></i> Quay lại</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
