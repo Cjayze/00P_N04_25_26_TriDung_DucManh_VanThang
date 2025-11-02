@@ -1,0 +1,69 @@
+## Nhóm 6 :ỨNG DỤNG QUẢN LÝ CỬA HÀNG DŨNG - MẠNH - THẮNG
+- Nguyễn Đức Mạnh
+- Nguyễn Văn Thắng
+- Dương Trí Dũng
+
+## 🔗 Các liên kết quan trọng
+- 🔗 [GitHub Repository]: https://github.com/Cjayze/00P_N04_25_26_TriDung_DucManh_VanThang.git
+- 📺 [Video demo ứng dụng (YouTube)]:
+
+## 🏠 Giới thiệu Dự án
+Đây là một ứng dụng quản lý bán hàng được xây dựng bằng ngôn ngữ lập trình Java sử dụng thư viện Java Swing để thiết kế giao diện người dùng và sử dụng cơ sở dữ liệu SQL SERVER.
+Đây là một ứng dụng quản lý bán hàng được xây dựng bằng ngôn ngữ lập trình Java sử dụng thư viện Java Swing để thiết kế giao diện người dùng và sử dụng cơ sở dữ liệu SQL SERVER.
+
+## 📦 Mô hình đối tượng
+class Room {
+    String roomID;
+    double price;
+    status ENUM('available', 'occupied', 'maintenance'),
+    landlord_id INT,
+    tenant_id INT,
+    rented_from DATE,
+    due_date DATE,
+    created_at DATETIME,
+    updated_at DATETIME,
+}
+
+class Tenant {
+    String nameT;
+    String nameID;
+    String phoneTenant;
+    String phongThue;
+}
+
+class Landlord {
+    String landlordID;
+    String nameL;
+    String phoneLandlord;
+}
+
+## 📋 Chức năng chính
+|Sản phẩm	| Thêm / Sửa / Xoá / Xem chi tiết / Lọc theo danh mục, giá, trạng thái|
+|Danh mục	| Thêm / Sửa / Xoá danh mục sản phẩm|
+|Đơn hàng	| Thêm / Sửa / Xoá, Quản lý đơn đặt hàng và trạng thái giao hàng|
+|Người dùng	| Quản lý thông tin khách hàng, lịch sử mua hàng|
+|Thống kê	| Thống kê doanh thu, số lượng sản phẩm bán ra, hàng tồn kho|
+|Phản hồi	| Tiếp nhận và xử lý phản hồi, đánh giá từ khách hàng|
+|Hóa đơn	| Tạo và quản lý hóa đơn bán hàng|
+|Thông báo	| Hiển thị thông báo mới, đơn hàng sắp hết hàng, hoặc chương trình khuyến mãi|
+
+## 🧪 Kiểm thử & Xử lý lỗi
+
+- Sử dụng `try-catch` để bắt lỗi khi thao tác với cơ sở dữ liệu hoặc dữ liệu không hợp lệ.
+- API REST sử dụng `ResponseEntity` để trả về mã lỗi HTTP phù hợp.
+- Ví dụ:
+try {
+    // logic
+} catch (Exception e) {
+    return ResponseEntity.status(500).body("Lỗi: " + e.getMessage());
+}
+
+## ☁️ Kết nối Cơ sở dữ liệu:
+
+- Cơ sở dữ liệu sử dụng: **MySQL trên nền tảng Aiven**
+- Cấu hình trong `application.properties`:
+spring.datasource.url=jdbc:mysql://project-oop1-manhnguyen040725-4196.b.aivencloud.com:14319/defaultdb?ssl-mode=REQUIRED
+spring.datasource.username=avnadmin
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+
